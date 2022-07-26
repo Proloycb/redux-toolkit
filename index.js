@@ -8,46 +8,71 @@
 const {createStore} = require('redux');
 
 // constants
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
-const RESET = 'RESET';
+// const INCREMENT = 'INCREMENT';
+// const INCREMENT_BY_VALUE = 'INCREMENT_BY_VALUE';
+// const DECREMENT = 'DECREMENT';
+// const RESET = 'RESET';
+const ADD_USER = 'ADD_USER';
 
 const initialState = {
-    count: 0,
+    users: ["roh"],
+    count: 1,
 };
 
-const incrementCounter = () => {
+const userCounter = (value) => {
     return {
-        type: INCREMENT,
+        type: ADD_USER,
+        payload: value,
     };
 };
-const decrementCounter = () => {
-    return {
-        type: DECREMENT,
-    };
-};
-const resetCounter = () => {
-    return {
-        type: RESET,
-    };
-};
+// const incrementCounter = () => {
+//     return {
+//         type: INCREMENT,
+//     };
+// };
+// const decrementCounter = () => {
+//     return {
+//         type: DECREMENT,
+//     };
+// };
+// const resetCounter = () => {
+//     return {
+//         type: RESET,
+//     };
+// };
+// const incrementCounterValue = (value) => {
+//     return {
+//         type: INCREMENT_BY_VALUE,
+//         payload: value, 
+//     };
+// };
 
 const counterReducer = (state = initialState, action) => {
     switch (action.type) {
-        case INCREMENT:
+        // case INCREMENT:
+        //   return{
+        //     ...state,
+        //     count: state.count + 1,
+        //   };
+        // case DECREMENT:
+        //   return{
+        //     ...state,
+        //     count: state.count - 1,
+        //   };
+        // case RESET:
+        //   return{
+        //     ...state,
+        //     count: 0,
+        //   };
+        // case INCREMENT_BY_VALUE:
+        //   return{
+        //     ...state,
+        //     count: state.count + action.payload,
+        //   };
+        case ADD_USER:
           return{
-            ...state,
+            users: [...state.users, action.payload],
             count: state.count + 1,
-          };
-        case DECREMENT:
-          return{
-            ...state,
-            count: state.count - 1,
-          };
-        case RESET:
-          return{
-            ...state,
-            count: 0,
           };
     
         default:
@@ -61,8 +86,11 @@ store.subscribe(() => {
     console.log(store.getState());
 });
 
-store.dispatch(incrementCounter());
-store.dispatch(incrementCounter());
-store.dispatch(decrementCounter());
-store.dispatch(resetCounter());
-store.dispatch(incrementCounter());
+// store.dispatch(incrementCounter());
+// store.dispatch(incrementCounter());
+// store.dispatch(decrementCounter());
+// store.dispatch(resetCounter());
+// store.dispatch(incrementCounter());
+// store.dispatch(incrementCounterValue(10));
+// store.dispatch(incrementCounterValue(6));
+store.dispatch(userCounter('jim'));
